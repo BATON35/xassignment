@@ -6,24 +6,31 @@ import com.example.xassignment.sort.Sort;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SortServiceImplementation implements SortService{
+public class SortServiceImplementation implements SortService {
     private final Sort bubbleSort;
     private final Sort heapSort;
     private final Sort mergeSort;
+    private final FileServiceImplementation fileServiceImplementation;
+    private final String STUDENTS_PATH = "src/main/resources/students.txt";
 
     public SortServiceImplementation(@Qualifier("bubbleSort") Sort bubbleSort,
                                      @Qualifier("heapSort") Sort heapSort,
-                                     @Qualifier("mergeSort") Sort mergeSort) {
+                                     @Qualifier("mergeSort") Sort mergeSort,
+                                     FileServiceImplementation fileServiceImplementation) {
         this.bubbleSort = bubbleSort;
         this.heapSort = heapSort;
         this.mergeSort = mergeSort;
+        this.fileServiceImplementation = fileServiceImplementation;
     }
+
     @Override
-    public List<Student> sortStudentsByGrade(List<Student> students, SortType type) {
+    public List<Student> sortStudentsByGrade(SortType type) throws FileNotFoundException {
+        List<Student> students = fileServiceImplementation.readStudentsFromFile(STUDENTS_PATH);
         List<Student> sortedStudents = new ArrayList<>();
         switch (type) {
             case HEAP:

@@ -1,0 +1,2 @@
+konrad, 6.0
+adam, 6.5

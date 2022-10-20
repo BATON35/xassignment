@@ -11,6 +11,6 @@ public class BubbleSort implements Sort {
     @Override
     public List<Student> sortStudentsByPerformance(List<Student> unsortedStudents) {
         // TODO: 17.10.2022 to implement
-        return null;
+        return unsortedStudents;
     }
 }

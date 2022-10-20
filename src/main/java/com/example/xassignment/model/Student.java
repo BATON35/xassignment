@@ -1,4 +1,4 @@
 package com.example.xassignment.model;
 
-public record Student(long id, String name, Double grade) {
+public record Student(String name, Double grade) {
 }
