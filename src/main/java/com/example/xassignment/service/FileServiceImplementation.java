@@ -3,8 +3,7 @@ package com.example.xassignment.service;
 import com.example.xassignment.model.Student;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,6 +23,15 @@ public class FileServiceImplementation implements FileService {
             students.add(new Student(split[0], Double.valueOf(split[1])));
             System.out.println(data);
         }
+
+        return students;
+    }
+
+    @Override
+    public List<Student> saveStudentsToFile(List<Student> students) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(("note.txt")));
+        writer.write(students.toString());
+        writer.close();
 
         return students;
     }
